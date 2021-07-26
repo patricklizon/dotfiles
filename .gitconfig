@@ -1,0 +1,15 @@
+[user]
+	name = Patryk Lizoń
+	email = lizon.patryk@gmail.com
+[core]
+	excludesfile = /Users/patryklizon/.gitignore_global
+[push]
+	default = current
+[diff]
+	tool = vscode
+[fetch]
+	prune = true
+[pull]
+	rebase = true
+[help]
+	autocorrect = true
