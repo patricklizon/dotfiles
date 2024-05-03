@@ -108,8 +108,3 @@ fi
 
 #FNM :: brew :: https://github.com/Schniz/fnm
 eval "$(fnm env)"
-
-# DENO COMPLETITION :: brew ::
-fpath=(~/.zsh $fpath)
-autoload -Uz compinit
-compinit -u
