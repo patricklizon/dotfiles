@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 set -e
 
-touch "${HOME}/.secrets"
+[ -f "${HOME}/.secrets" ] || touch "${HOME}/.secrets"
+
 ln -sf "${PWD}/zsh/.zshrc" "${HOME}/.zshrc"
