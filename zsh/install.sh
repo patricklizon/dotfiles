@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 set -e
 
-[ -f "${HOME}/.secrets" ] || touch "${HOME}/.secrets"
+main() {
+    [ -f "${HOME}/.secrets" ] || touch "${HOME}/.secrets"
+    ln -sf "${PWD}/zsh/.zshrc" "${HOME}/.zshrc"
+}
 
-ln -sf "${PWD}/zsh/.zshrc" "${HOME}/.zshrc"
+main

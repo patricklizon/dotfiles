@@ -6,6 +6,7 @@ packages=(
     ack
     fnm # https://github.com/Schniz/fnm
     fzf # https://github.com/junegunn/fzf
+    # gh # https://cli.github.com
     git
     glow # https://github.com/charmbracelet/glow
     gnupg # https://github.com/gpg/gnupg
@@ -28,7 +29,10 @@ apps=(
     rectangle # https://github.com/rxhanson/Rectangle
     transmission # https://github.com/transmission/transmission
     zed # https://github.com/zed-industries/zed
+    keepassxc # https://github.com/keepassxreboot/keepassxc
 )
+
+casks="${fonts[@]}" "${apps[@]}"
 
 # Function to install packages
 install_packages() {
@@ -36,23 +40,24 @@ install_packages() {
         printf "Installing %s\n" "${pkg}"
         if ! brew install "${pkg}"; then
             printf "Failed to install %s\n" "${pkg}" >&2
+        else
+            printf "Successfully installed %s\n" "${pkg}"
         fi
     done
 }
 
-# Function to install fonts and apps
 install_casks() {
-    local casks=("${fonts[@]}" "${apps[@]}")
     for cask in "${casks[@]}"; do
         printf "Installing %s\n" "${cask}"
         if ! brew install --cask "${cask}"; then
             printf "Failed to install %s\n" "${cask}" >&2
+        else
+            printf "Successfully installed %s\n" "${cask}"
         fi
     done
 }
 
-# Function to clean up Homebrew
-cleanup_brew() {
+cleanup() {
     brew autoremove --verbose
     brew cleanup --prune=all
 }
@@ -66,16 +71,24 @@ add_initializers_to_zshrc() {
 
     for initializer in "${initializers[@]}"; do
         if ! grep -qF "${initializer}" "${HOME}/.zshrc"; then
-            printf '\n%s\n' "${initializer}" >> "${HOME}/.zshrc""
+            printf '\n%s\n' "${initializer}" >> "${HOME}/.zshrc"
+            printf "Added initializer to .zshrc: %s\n" "${initializer}"
         fi
     done
 }
 
-# Main script execution
-install_packages
-install_casks
-cleanup_brew
-add_initializers_to_zshrc
+main() {
+    if test ! $(which brew); then
+        printf "\nInstalling the brew package manager\n"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
 
-printf "Setup complete. Restart your terminal or source your `~/.zshrc` file.\n"
-printf "After that run "
+    install_packages
+    install_casks
+    cleanup
+    add_initializers_to_zshrc
+
+    printf "\nRestart your terminal or source your ~/.zshrc file.\n"
+}
+
+main

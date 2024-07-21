@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 set -e
 
-fnm install --lts
-fnm default lts/latest
+main() {
+    fnm install --lts
+    fnm default lts/latest
+}
+
+main

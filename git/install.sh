@@ -1,20 +1,29 @@
 #!/usr/bin/env zsh
 set -e
 
-HOME_CONFIG="${HOME}/.gitconfig.local"
-PWD_CONFIG="${PWD}/git/.gitconfig.local"
+source "${PWD}/constants.sh"
 
-if [ ! -f "${HOME_CONFIG}" ] ; then
-    cp "${PWD_CONFIG}" "${HOME_CONFIG}"
+LOCAL_GIT_CONFIG="${HOME}/.gitconfig.local"
 
-    echo "Enter your email address:"
-    read -r email
-    sed -i '' "s|GIT_EMAIL|${email}|" "${HOME_CONFIG}"
+copy_gitconfig_local() {
+    if [ ! -f "${LOCAL_GIT_CONFIG}" ]; then
+        cp "${PWD}/git/.gitconfig.local" "${LOCAL_GIT_CONFIG}"
 
-    echo "Enter the path to your public SSH key:"
-    read -r ssh_key_path
-    sed -i '' "s|GIT_SIGNKEY|${ssh_key_path}|" "${HOME_CONFIG}"
-fi
+        echo "Enter your email address:"
+        read -r email
+        sed -i '' "s|GIT_EMAIL|${email}|" "${LOCAL_GIT_CONFIG}"
+        sed -i '' "s|GIT_SIGNKEY|${SSH_KEY_PATH}|" "${LOCAL_GIT_CONFIG}"
+    fi
+}
 
-ln -sf "${PWD}/git/.gitconfig" "${HOME}/.gitconfig"
-ln -sf "${PWD}/git/.gitignore" "${HOME}/.gitignore"
+create_symlinks() {
+    ln -sf "${PWD}/git/.gitconfig" "${HOME}/.gitconfig"
+    ln -sf "${PWD}/git/.gitignore" "${HOME}/.gitignore"
+}
+
+main() {
+    copy_gitconfig_local
+    create_symlinks
+}
+
+main

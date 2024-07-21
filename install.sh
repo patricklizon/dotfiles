@@ -1,13 +1,13 @@
 #!/usr/bin/env sh
 set -e
 
-# Installation
+# ./bin/run.sh install ssh
 
-./bin/dotfiles install brew
-./bin/dotfiles install zsh
-./bin/dotfiles install omz
+# ./bin/run.sh install brew
+# ./bin/run.sh install zsh
+./bin/run.sh install omz
 
-./bin/dotfiles install node
-./bin/dotfiles install git
-./bin/dotfiles install github
-./bin/dotfiles install zed
+# ./bin/run.sh install node
+# ./bin/run.sh install git
+# ./bin/run.sh install github
+# ./bin/run.sh install zed

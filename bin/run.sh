@@ -11,9 +11,9 @@ function usage() {
 
 function run_script() {
     local action="$1"
-    echo "${action^} package: ${PACKAGE}"
+    echo "Setting up: ${PACKAGE}"
     "${PACKAGE}/${action}.sh"
-    echo
+    echo "done"
 }
 
 [[ -z "${COMMAND}" || -z "${PACKAGE}" ]] && usage
