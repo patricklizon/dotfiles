@@ -1,0 +1,7 @@
+# IDEs
+.idea/
+.vscode.
+*.code-workspace
+
+# OS
+.DS_Store

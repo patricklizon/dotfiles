@@ -1,0 +1,34 @@
+[include]
+  path = ~/.gitconfig.local
+
+[core]
+  excludesfile = ~/.gitignore
+
+[commit]
+    gpgsign = true
+
+[color]
+    ui = true
+
+[diff]
+    compactionHeuristic = true
+    noprefix = true
+
+[gpg]
+    format = ssh
+
+[init]
+    defaultBranch = master
+
+[user]
+    name = Patrick Lizoń
+    useConfigOnly = true
+
+[safe]
+    directory = *
+
+[pull]
+    rebase = true
+
+[rebase]
+    autostash = true

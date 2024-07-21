@@ -8,7 +8,7 @@ export ZSH="/Users/$USER/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="nicoulaj"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -69,16 +69,16 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  golang
-  osx
-  )
-
-# NPM autocompletition :: https://github.com/lukechilds/zsh-better-npm-completion
-plugins+=(zsh-better-npm-completion)
-
+    git
+    npm
+    pod
+    dotenv
+)
 
 source $ZSH/oh-my-zsh.sh
+
+# Source secrets
+[ -f $HOME/.secrets ] && source $HOME/.secrets
 
 # User configuration
 
@@ -91,7 +91,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='code'
+  export EDITOR='zed'
 fi
 
 # Compilation flags
@@ -101,10 +101,3 @@ fi
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-#FNM :: brew :: https://github.com/Schniz/fnm
-eval "$(fnm env)"

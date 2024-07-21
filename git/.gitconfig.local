@@ -1,0 +1,3 @@
+[user]
+    email = GIT_EMAIL
+    signingkey = GIT_SIGNKEY
