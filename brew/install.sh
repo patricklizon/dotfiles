@@ -6,7 +6,6 @@ packages=(
     ack
     fnm # https://github.com/Schniz/fnm
     fzf # https://github.com/junegunn/fzf
-    gh # https://cli.github.com
     git
     glow # https://github.com/charmbracelet/glow
     gnupg # https://github.com/gpg/gnupg
