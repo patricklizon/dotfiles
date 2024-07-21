@@ -13,7 +13,6 @@ configure_macos_keychain() {
     fi
 }
 
-
 main() {
     ssh-keygen -t "${SSH_KEY_TYPE}" -f "${SSH_KEY_PATH}"
     eval "$(ssh-agent -s)"

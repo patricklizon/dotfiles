@@ -3,10 +3,10 @@ set -e
 
 # Define packages, fonts, and apps
 packages=(
+    # gh # https://cli.github.com
     ack
     fnm # https://github.com/Schniz/fnm
     fzf # https://github.com/junegunn/fzf
-    # gh # https://cli.github.com
     git
     glow # https://github.com/charmbracelet/glow
     gnupg # https://github.com/gpg/gnupg
@@ -15,6 +15,7 @@ packages=(
     shellcheck # https://github.com/koalaman/shellcheck
     tealdeer # https://github.com/dbrgn/tealdeer
     tmux # https://github.com/tmux/tmux/wiki
+    qemu # https://gitlab.com/qemu-project/qemu
 )
 
 fonts=(
@@ -24,12 +25,15 @@ fonts=(
 )
 
 apps=(
+    firefox
+    google-chrome
     iterm2 # https://github.com/gnachman/iTerm2
+    keepassxc # https://github.com/keepassxreboot/keepassxc
     proxyman # https://github.com/ProxymanApp/Proxyman
     rectangle # https://github.com/rxhanson/Rectangle
+    stats # https://github.com/exelban/stats
     transmission # https://github.com/transmission/transmission
     zed # https://github.com/zed-industries/zed
-    keepassxc # https://github.com/keepassxreboot/keepassxc
 )
 
 casks="${fonts[@]}" "${apps[@]}"
