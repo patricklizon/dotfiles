@@ -6,8 +6,8 @@ source "${PWD}/constants.sh"
 configure_macos_keychain() {
     /usr/bin/ssh-add --apple-use-keychain "$SSH_KEY_PATH"
 
-    if ! grep -q "UseKeychain yes" "${SSH_CONFIG}" 2>/dev/null; then
-        echo -e "Host *\n  UseKeychain yes\n  AddKeysToAgent yes\n  IdentityFile ${SSH_KEY_PATH}" >> "${SSH_CONFIG}"
+    if ! grep -q "UseKeychain yes" "${SSH_CONFIG_DIR}" 2>/dev/null; then
+        echo -e "Host *\n  UseKeychain yes\n  AddKeysToAgent yes\n  IdentityFile ${SSH_KEY_PATH}" >> "${SSH_CONFIG_DIR}"
 
         echo "Configured macOS keychain integration in ~/.ssh/config."
     fi
