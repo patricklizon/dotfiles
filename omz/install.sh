@@ -10,16 +10,17 @@ command_exists() {
 
 install_oh_my_zsh() {
     if [ ! -d "${OMZ_DIR}" ]; then
-        echo "Installing Oh My Zsh..."
+        echo "Installing Oh My Zsh...\n"
         sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     else
-        echo "Oh My Zsh is already installed."
+        echo "Oh My Zsh is already installed.\n"
     fi
 }
 
 # Function to symlink custom files
 symlink_custom_files() {
-    echo "Symlinking custom files..."
+    echo "Symlinking custom files...\n"
+
     for it in aliases exports functions bind; do
         target="${CUSTOM_DIR}/${it}.zsh"
         source="${PWD}/omz/${it}.zsh"
@@ -41,6 +42,7 @@ symlink_custom_files() {
 }
 
 main() {
+    echo "Setting up oh-my-zsh...\n"
     install_oh_my_zsh
     symlink_custom_files
 }

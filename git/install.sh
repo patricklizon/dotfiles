@@ -22,6 +22,7 @@ create_symlinks() {
 }
 
 main() {
+    echo "Setting up git..."
     copy_gitconfig_local
     create_symlinks
 }

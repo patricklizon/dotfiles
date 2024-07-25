@@ -5,6 +5,8 @@ DIR=${CONFIG_DIR}/zed/
 PWD_PATH=${PWD}/zed/
 
 main() {
+    echo "Setting up zed..."
+
     if [ ! -d "${DIR}" ]; then
         mkdir -p ${DIR}
     fi
