@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 set -e
 
-# Define packages, fonts, and apps
 packages=(
     # gh # https://cli.github.com
     ack # https://github.com/samaaron/ack
@@ -15,7 +14,6 @@ packages=(
     shellcheck # https://github.com/koalaman/shellcheck
     tealdeer # https://github.com/dbrgn/tealdeer
     tmux # https://github.com/tmux/tmux/wiki
-    qemu # https://gitlab.com/qemu-project/qemu
 )
 
 fonts=(
@@ -31,9 +29,11 @@ apps=(
     keepassxc # https://github.com/keepassxreboot/keepassxc
     proxyman # https://github.com/ProxymanApp/Proxyman
     rectangle # https://github.com/rxhanson/Rectangle
+    signal # https://github.com/signalapp/Signal-Desktop
     stats # https://github.com/exelban/stats
     transmission # https://github.com/transmission/transmission
     zed # https://github.com/zed-industries/zed
+    utm # https://github.com/utmapp/UTM
 )
 
 casks=(${fonts[@]} ${apps[@]})
@@ -49,34 +49,30 @@ is_already_installed_with_brew() {
 }
 
 install_with_brew() {
-    bold() {
-        echo -e "\033[1m${text}\033[0m"
-    }
-
     local pkg=$1
     local is_cask=$2
 
     # Check if Homebrew is installed
     if ! command -v brew &> /dev/null; then
-        echo "Homebrew is not installed. Please install Homebrew first."
+        echo "Homebrew is not installed. Please install Homebrew first.\n"
         return 1
     fi
 
     if is_already_installed_with_brew "$pkg" "$is_cask"; then
-        echo "$pkg is already installed."
+        echo "$pkg is already installed.\n"
     else
-        echo "$pkg is not found. Installing now..."
+        echo "$pkg is not found. Installing now...\n"
         if [ "$is_cask" = "--cask" ]; then
             if brew install --cask "$pkg"; then
-                echo "The cask ${pkg} has been successfully installed."
+                echo "The cask ${pkg} has been successfully installed.\n"
             else
-                echo "Failed to install the cask $pkg."
+                echo "Failed to install the cask $pkg.\n"
             fi
         else
             if brew install "$pkg"; then
-                echo "The formula ${pkg} has been successfully installed."
+                echo "The formula ${pkg} has been successfully installed.\n"
             else
-                echo "Failed to install the formula $pkg."
+                echo "Failed to install the formula $pkg.\n"
             fi
         fi
     fi
@@ -95,24 +91,9 @@ install_casks() {
 }
 
 cleanup() {
-    echo "Cleaning up\n"
+    echo "Cleaning up...\n"
     brew autoremove --verbose
     brew cleanup --prune=all
-}
-
-# Function to add initializers to .zshrc
-add_initializers_to_zshrc() {
-    local initializers=(
-        'eval "$(fnm env --use-on-cd)"'
-        'eval "$(fzf --zsh)"'
-    )
-
-    for initializer in "${initializers[@]}"; do
-        if ! grep -qF "${initializer}" "${HOME}/.initializers"; then
-            printf '\n%s\n' "${initializer}" >> "${HOME}/.initializers"
-            printf "Added initializer to ~/.initializers: %s\n" "${initializer}"
-        fi
-    done
 }
 
 main() {
@@ -124,7 +105,6 @@ main() {
     install_packages
     install_casks
     cleanup
-    add_initializers_to_zshrc
 
     printf "\nRestart your terminal or source your ~/.zshrc file.\n"
 }
