@@ -4,7 +4,11 @@ All of my dotfiles - automatized.
 
 ## Setup
 
+
 ```sh
-# run installation
+# install xcode cli tools
+xcode-select --install
+
+# run script
 ./install.sh
 ```
