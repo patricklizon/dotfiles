@@ -13,6 +13,7 @@
     "dark": "Andromeda",
     "light": "Gruvbox Light"
   },
+  "cursor_blink": true,
   "ui_font_size": 16,
   "buffer_font_size": 13,
   "buffer_line_height": {
@@ -28,7 +29,7 @@
     "version": "1",
     "provider": {
       "name": "anthropic",
-      "default_model": "claude-3-opus-20240229"
+      "default_model": "claude-3-haiku-20240307"
     }
   },
   "terminal": {

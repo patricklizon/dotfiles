@@ -3,11 +3,13 @@ set -e
 
 source "${PWD}/constants.sh"
 
+DIR="${CONFIG_DIR}/git/"
+PWD_PATH="${PWD}/git/"
 LOCAL_GIT_CONFIG="${HOME}/.gitconfig.local"
 
 copy_gitconfig_local() {
     if [ ! -f "${LOCAL_GIT_CONFIG}" ]; then
-        cp "${PWD}/git/.gitconfig.local" "${LOCAL_GIT_CONFIG}"
+        cp "${PWD_PATH}/.gitconfig.local" "${LOCAL_GIT_CONFIG}"
 
         echo "Enter your email address:"
         read -r email
@@ -17,8 +19,14 @@ copy_gitconfig_local() {
 }
 
 create_symlinks() {
-    ln -sf "${PWD}/git/.gitconfig" "${HOME}/.gitconfig"
-    ln -sf "${PWD}/git/.gitignore" "${HOME}/.gitignore"
+    files=(
+        .gitconfig.json
+        .gitignore.json
+    )
+
+    for file in "${files[@]}"; do
+        ln -sf "${PWD_PATH}${file}" "${DIR}${file}"
+    done
 }
 
 main() {

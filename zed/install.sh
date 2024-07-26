@@ -1,8 +1,10 @@
 #!/usr/bin/env zsh
 set -e
 
-DIR=${CONFIG_DIR}/zed/
-PWD_PATH=${PWD}/zed/
+source "${PWD}/constants.sh"
+
+DIR="${CONFIG_DIR}/zed/"
+PWD_PATH="${PWD}/zed/"
 
 main() {
     echo "Setting up zed..."
@@ -17,7 +19,7 @@ main() {
     )
 
     for file in "${files[@]}"; do
-        ln -sf "${PWD_PATH}/${file}" "${DIR}/${file}"
+        ln -sf "${PWD_PATH}${file}" "${DIR}${file}"
     done
 }
 
