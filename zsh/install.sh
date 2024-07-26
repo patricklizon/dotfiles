@@ -4,9 +4,9 @@ set -e
 check_and_create_file() {
     local file_path=$1
     if [ -f "$file_path" ]; then
-        echo "The file $file_path already exists."
+        echo "The file ${file_path} already exists."
     else
-        echo "The file $file_path does not exist. Creating it now."
+        echo "The file ${file_path} does not exist. Creating it now."
         touch "$file_path"
     fi
 }
