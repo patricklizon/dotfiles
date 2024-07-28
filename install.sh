@@ -11,3 +11,4 @@ set -e
 ./bin/run.sh install git
 ./bin/run.sh install github
 ./bin/run.sh install zed
+./bin/run.sh install tmux
