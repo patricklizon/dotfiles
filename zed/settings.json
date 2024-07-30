@@ -7,39 +7,48 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "vim_mode": true,
-  "theme": {
-    "mode": "system",
-    "dark": "Andromeda",
-    "light": "Gruvbox Light"
-  },
-  "cursor_blink": true,
-  "ui_font_size": 16,
-  "buffer_font_size": 13,
-  "buffer_line_height": {
-    "custom": 1.8
-  },
-  "buffer_font_family": "JetBrains Mono",
-  "show_whitespaces": "boundary",
-  "relative_line_numbers": true,
-  "project_panel": {
-    "folder_icons": false
-  },
-  "assistant": {
-    "version": "1",
-    "provider": {
-      "name": "anthropic",
-      "default_model": "claude-3-haiku-20240307"
-    }
-  },
-  "terminal": {
-    "blinking": "terminal_controlled"
-  },
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false
-  },
-  "wrap_guides": [80, 120],
-  "show_wrap_guides": true,
-  "soft_wrap": "editor_width"
+	"vim_mode": true,
+	"vim": {
+		"use_system_clipboard": "always"
+	},
+	"theme": {
+		"mode": "system",
+		"dark": "Andromeda",
+		"light": "Gruvbox Light"
+	},
+	"tab_size": 4,
+	"hard_tabs": true,
+	"tab_bar": {
+		"show": false,
+		"show_nav_history_buttons": false
+	},
+	"cursor_blink": true,
+	"ui_font_size": 16,
+	"buffer_font_size": 13,
+	"buffer_line_height": {
+		"custom": 1.8
+	},
+	"buffer_font_family": "JetBrains Mono",
+	"show_whitespaces": "boundary",
+	"relative_line_numbers": true,
+	"project_panel": {
+		"folder_icons": false
+	},
+	"assistant": {
+		"version": "1",
+		"provider": {
+			"name": "anthropic",
+			"default_model": "claude-3-5-sonnet-20240620"
+		}
+	},
+	"terminal": {
+		"blinking": "terminal_controlled"
+	},
+	"telemetry": {
+		"diagnostics": false,
+		"metrics": false
+	},
+	"wrap_guides": [80, 120],
+	"show_wrap_guides": true,
+	"soft_wrap": "editor_width"
 }

@@ -2,18 +2,18 @@
 set -e
 
 check_and_create_file() {
-    local file_path=$1
-    if [ -f "$file_path" ]; then
-        echo "The file ${file_path} already exists."
-    else
-        echo "The file ${file_path} does not exist. Creating it now."
-        touch "$file_path"
+    local target=$1
+    if [ -e "${target}" ]; then
+        echo "Backing up existing file: ${target}"
+        mv "${target}" "${target}.backup"
     fi
+
+    touch "${target}"
 }
 
 add_initializers() {
     local initializers=(
-        'eval "$(fnm env --use-on-cd)"'
+        'eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"'
         'eval "$(fzf --zsh)"'
     )
 
