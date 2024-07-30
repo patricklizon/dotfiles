@@ -20,7 +20,7 @@ main () {
 
     echo "\nLinking files...\n"
 
-    local file=".tmux.conf"
+    local file="tmux.conf"
     ln -sf "${PWD_PATH}${file}" "${DIR}${file}"
     }
 
