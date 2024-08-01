@@ -5,7 +5,7 @@ OMZ_DIR="${HOME}/.oh-my-zsh"
 CUSTOM_DIR="${OMZ_DIR}/custom"
 
 command_exists() {
-    command -v "$1" >/dev/null 2>&1
+	command -v "$1" >/dev/null 2>&1
 }
 
 install_oh_my_zsh() {

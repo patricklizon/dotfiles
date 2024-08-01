@@ -2,10 +2,10 @@
 set -e
 
 main() {
-    echo "Setting up node LTS...\n"
+	echo "Setting up node LTS...\n"
 
-    fnm install --lts
-    fnm default lts/latest
+	fnm install --lts
+	fnm default lts/latest
 }
 
 main

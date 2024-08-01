@@ -8,28 +8,28 @@ TPM_DIR="${HOME}/.tmux/plugin/tpm"
 PWD_PATH="${PWD}/tmux/"
 
 install_tpm() {
-    if test ! -d ~/.tmux/plugins/tpm "${TPM_DIR}"; then
-       git clone "https://github.com/tmux-plugins/tpm ${TPM_DIR}"
-    fi
+	if test ! -d ~/.tmux/plugins/tpm "${TPM_DIR}"; then
+		git clone "https://github.com/tmux-plugins/tpm ${TPM_DIR}"
+	fi
 
-    ${TPM_DIR}/bin/install_plugins
+	${TPM_DIR}/bin/install_plugins
 }
 
 main() {
-    echo "Setting up tmux...\n"
+	echo "Setting up tmux...\n"
 
-    if [ ! -d "${DIR}" ]; then
-        mkdir -p ${DIR}
-    fi
+	if [ ! -d "${DIR}" ]; then
+		mkdir -p ${DIR}
+	fi
 
-    echo "\nLinking files...\n"
+	echo "\nLinking files...\n"
 
-    local file="tmux.conf"
-    ln -sf "${PWD_PATH}${file}" "${DIR}${file}"
+	local file="tmux.conf"
+	ln -sf "${PWD_PATH}${file}" "${DIR}${file}"
 
-    echo "\nInstalling tpm...\n"
+	echo "\nInstalling tpm...\n"
 
-    install_tpm
+	install_tpm
 }
 
 main
