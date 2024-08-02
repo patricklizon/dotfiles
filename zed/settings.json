@@ -35,11 +35,12 @@
 		"folder_icons": false
 	},
 	"assistant": {
-		"version": "1",
-		"provider": {
-			"name": "anthropic",
-			"default_model": "claude-3-haiku-20240307"
-		}
+		"default_model": {
+			"provider": "anthropic",
+			"model": "claude-3-opus-20240307"
+		},
+		"version": "2",
+		"provider": null
 	},
 	"terminal": {
 		"blinking": "terminal_controlled"
