@@ -5,12 +5,14 @@
 //
 // To see all of Zed's default settings without changing your
 // custom settings, run the `open default settings` command
-// from the command palette or from `Zed` application menu.
 {
 	"vim_mode": true,
 	"vim": {
 		"use_system_clipboard": "always"
 	},
+	"cursor_blink": false,
+	"relative_line_numbers": true,
+	"vertical_scroll_margin": 0,
 	"theme": {
 		"mode": "system",
 		"dark": "Andromeda",
@@ -22,7 +24,6 @@
 		"show": false,
 		"show_nav_history_buttons": false
 	},
-	"cursor_blink": true,
 	"ui_font_size": 16,
 	"buffer_font_size": 13,
 	"buffer_line_height": {
@@ -30,9 +31,8 @@
 	},
 	"buffer_font_family": "JetBrains Mono",
 	"show_whitespaces": "boundary",
-	"relative_line_numbers": true,
 	"project_panel": {
-		"folder_icons": false
+		"dock": "right"
 	},
 	"assistant": {
 		"default_model": {
