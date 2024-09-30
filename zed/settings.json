@@ -10,18 +10,21 @@
 	"vim": {
 		"use_system_clipboard": "always"
 	},
-	"cursor_blink": false,
+	"cursor_blink": true,
 	"relative_line_numbers": true,
 	"vertical_scroll_margin": 0,
+	"tabs": {
+		"git_status": true
+	},
 	"theme": {
 		"mode": "system",
 		"dark": "Andromeda",
 		"light": "Gruvbox Light"
 	},
-	"tab_size": 4,
+	"tab_size": 2,
 	"hard_tabs": true,
 	"tab_bar": {
-		"show": false,
+		"show": true,
 		"show_nav_history_buttons": false
 	},
 	"ui_font_size": 16,
@@ -31,19 +34,12 @@
 	},
 	"buffer_font_family": "JetBrains Mono",
 	"show_whitespaces": "boundary",
-	"project_panel": {
-		"dock": "right"
-	},
 	"assistant": {
 		"default_model": {
-			"provider": "anthropic",
-			"model": "claude-3-opus-20240307"
+			"provider": "zed.dev",
+			"model": "claude-3-5-sonnet-20240620"
 		},
-		"version": "2",
-		"provider": null
-	},
-	"terminal": {
-		"blinking": "terminal_controlled"
+		"version": "2"
 	},
 	"telemetry": {
 		"diagnostics": false,
