@@ -6,7 +6,10 @@
 // To see all of Zed's default settings without changing your
 // custom settings, run the `open default settings` command
 {
-	"vim_mode": true,
+	"features": {
+  "inline_completion_provider": "none"
+ },
+ "vim_mode": true,
 	"vim": {
 		"use_system_clipboard": "always"
 	},
@@ -19,9 +22,9 @@
 	"theme": {
 		"mode": "system",
 		"dark": "Andromeda",
-		"light": "Gruvbox Light"
+		"light": "Rosé Pine"
 	},
-	"tab_size": 2,
+	"tab_size": 4,
 	"hard_tabs": true,
 	"tab_bar": {
 		"show": true,
@@ -37,7 +40,7 @@
 	"assistant": {
 		"default_model": {
 			"provider": "zed.dev",
-			"model": "claude-3-5-sonnet-20240620"
+			"model": "claude-3-5-sonnet-latest"
 		},
 		"version": "2"
 	},
@@ -47,5 +50,9 @@
 	},
 	"wrap_guides": [80, 120],
 	"show_wrap_guides": true,
-	"soft_wrap": "editor_width"
+	"soft_wrap": "editor_width",
+	"terminal": {
+		"cursor_shape": "bar",
+		"blinking": "on"
+	}
 }
