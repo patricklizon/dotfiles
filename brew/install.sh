@@ -2,8 +2,7 @@
 set -e
 
 packages=(
-	# gh # https://cli.github.com
-	ack # https://github.com/samaaron/ack
+	ripgrep # https://github.com/BurntSushi/ripgrep
 	fnm # https://github.com/schniz/fnm
 	fzf # https://github.com/junegunn/fzf
 	git
