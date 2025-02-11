@@ -1,0 +1,86 @@
+{
+	"for loop": {
+		"description": "for loop",
+		"prefix": "for",
+		"body": [
+			"for (let ${1:it} = 0; ${1:it} < $2; ${1:it} ${3:++}) {",
+			"$4",
+			"};"
+		]
+	},
+	"for of loop": {
+		"description": "for of loop",
+		"prefix": "forof",
+		"body": ["for (const ${1:it} of $2) {", "$3", "};"]
+	},
+	"while loop": {
+		"description": "while loop",
+		"prefix": "while",
+		"body": ["while ($1) {", "$2", "};"]
+	},
+	"console log": {
+		"description": "console.log",
+		"prefix": "log",
+		"body": ["console.log($1)"]
+	},
+	"console warn": {
+		"description": "console.warn",
+		"prefix": "warn",
+		"body": ["console.warn($1)"]
+	},
+	"console error": {
+		"description": "console.error",
+		"prefix": "error",
+		"body": ["console.error($1)"]
+	},
+	"function": {
+		"description": "Function declaration",
+		"prefix": "fn",
+		"body": ["function ${1:name}(${2:params}): ${3:void} {", "\t$4", "}"]
+	},
+	"async function": {
+		"description": "Async function",
+		"prefix": "afn",
+		"body": [
+			"async function ${1:fetchData}(${2:params}): Promise<${3:void}> {",
+			"\ttry {",
+			"\t\t$4",
+			"\t} catch (error) {",
+			"\t\tconsole.error(error);",
+			"\t}",
+			"}"
+		]
+	},
+	"arrow function": {
+		"description": "Arrow function",
+		"prefix": "arfn",
+		"body": [
+			"const ${1:name} = (${2:params}): ${3:void} => {",
+			"\t$4",
+			"};"
+		]
+	},
+	"async arrow function": {
+		"description": "Async arrow function",
+		"prefix": "aarfn",
+		"body": [
+			"const ${1:name} = async (${2:params}): Promise<${3:void}> => {",
+			"\t$4",
+			"};"
+		]
+	},
+	"type alias": {
+		"description": "Type alias",
+		"prefix": "type",
+		"body": ["type ${1:TypeName} = {", "\t${2:key}: ${3:string};", "};"]
+	},
+	"interface": {
+		"description": "Interface definition",
+		"prefix": "interface",
+		"body": [
+			"interface ${1:InterfaceName} {",
+			"\t${2:key}: ${3:string};",
+			"}"
+		]
+	}
+}

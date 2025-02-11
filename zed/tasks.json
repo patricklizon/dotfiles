@@ -1,0 +1,9 @@
+[
+	{
+		"label": "JavaScript Test",
+		"command": "npx vitest run",
+		"args": ["\"$ZED_RELATIVE_FILE\" -t=\"$ZED_SYMBOL\""],
+		"tags": ["tsx-test", "ts-test", "js-test"],
+		"shell": "system"
+	}
+]

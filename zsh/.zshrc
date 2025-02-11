@@ -71,8 +71,6 @@ ZSH_THEME="nicoulaj"
 plugins=(
     git
     npm
-    pod
-    dotenv
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -91,7 +89,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='zed'
+  export EDITOR='zed --wait'
 fi
 
 # Compilation flags
@@ -104,3 +102,6 @@ fi
 
 # Source initializers
 [ -f $HOME/.initializers ] && source $HOME/.initializers
+
+# https://direnv.net
+eval "$(direnv hook zsh)"
