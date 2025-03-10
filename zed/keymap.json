@@ -2,7 +2,8 @@
 	{
 		"context": "Workspace",
 		"bindings": {
-			"ctrl-cmd-t": "workspace::NewCenterTerminal"
+			"ctrl-cmd-t": "workspace::NewCenterTerminal",
+			"cmd-shift-g": "git_panel::ToggleFocus"
 		}
 	}
 ]
