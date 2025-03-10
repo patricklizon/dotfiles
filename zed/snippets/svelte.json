@@ -1,0 +1,34 @@
+{
+	"EACH template loop": {
+		"prefix": "seach",
+		"description": "Svelte EACH template statement",
+		"body": [
+			"{#each ${1:collection} as ${2:member}${3:, idx}}",
+			"${4}",
+			"{/each}"
+		]
+	},
+	"IF template statement": {
+		"description": "Svelte IF template statement",
+		"prefix": "sif",
+		"body": ["{#if ${1:collection}}", "${2}", "{/if}"]
+	},
+	"IF-ELSE template statement": {
+		"description": "Svelte IF-ELSE template statement",
+		"prefix": "sifel",
+		"body": ["{#if ${1:collection}}", "${2}", "{:else}", "${3}", "{/if}"]
+	},
+	"AWAIT template statement": {
+		"description": "Svelte IF-ELSE template statement",
+		"prefix": "sasync",
+		"body": [
+			"{#await ${1: promise}}",
+			"${2: <p>loading</p>}",
+			"{:then ${3: result}}",
+			"${4}",
+			"{:catch error}",
+			"${5}",
+			"{/await}"
+		]
+	}
+}
