@@ -6,37 +6,46 @@
 // To see all of Zed's default settings without changing your
 // custom settings, run the `open default settings` command
 {
-	"assistant": {
+	"active_pane_modifiers": {
+		"inactive_opacity": 0.68
+	},
+	"agent": {
+		"inline_assistant_model": {
+   "provider": "google",
+   "model": "gemini-2.0-flash"
+  },
+  "default_profile": "write",
 		"button": false,
 		"default_model": {
-			"model": "claude-3-5-sonnet-latest",
-			"provider": "zed.dev"
+			"model": "gemini-2.0-flash",
+			"provider": "google"
 		},
 		"version": "2"
 	},
 	"buffer_font_family": "JetBrains Mono",
-	"buffer_font_size": 12.0,
-	"active_pane_modifiers": {
-		"inactive_opacity": 0.68
+	"buffer_font_size": 13,
+	"edit_predictions": {
+		"mode": "subtle"
 	},
 	"features": {
 		"edit_prediction_provider": "none"
 	},
-	"hard_tabs": true,
+	"formatter": "auto",
 	"icon_theme": "Zed (Default)",
 	"project_panel": {
 		"entry_spacing": "comfortable",
 		"folder_icons": false
 	},
 	"relative_line_numbers": true,
+	"scroll_beyond_last_line": "off",
 	"show_whitespaces": "boundary",
 	"show_wrap_guides": true,
 	"soft_wrap": "editor_width",
-	"scroll_beyond_last_line": "off",
 	"tab_bar": {
 		"show": true,
 		"show_nav_history_buttons": false
 	},
+	"hard_tabs": true,
 	"tab_size": 4,
 	"tabs": {
 		"git_status": true,
@@ -62,8 +71,15 @@
 	},
 	"ui_font_size": 16,
 	"vim": {
+		"cursor_shape": {
+			"insert": "bar",
+			"normal": "block",
+			"replace": "underline",
+			"visual": "hollow"
+		},
 		"use_system_clipboard": "always"
 	},
 	"vim_mode": true,
-	"wrap_guides": [100, 120]
+	"wrap_guides": [100, 120],
+	"confirm_quit": true
 }
