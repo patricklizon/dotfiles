@@ -106,6 +106,7 @@ fi
 # Prevents writing duplicate commands to history
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
 
 # Don't save duplicates when writing out
 setopt HIST_SAVE_NO_DUPS
