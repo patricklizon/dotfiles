@@ -103,5 +103,12 @@ fi
 # Source initializers
 [ -f $HOME/.initializers ] && source $HOME/.initializers
 
-# https://direnv.net
-eval "$(direnv hook zsh)"
+# Prevents writing duplicate commands to history
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+
+# Don't save duplicates when writing out
+setopt HIST_SAVE_NO_DUPS
+
+# Don't display dupes during reverse search
+setopt HIST_FIND_NO_DUPS
