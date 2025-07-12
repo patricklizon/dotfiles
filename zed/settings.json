@@ -11,16 +11,15 @@
 	},
 	"agent": {
 		"inline_assistant_model": {
-   "provider": "google",
-   "model": "gemini-2.0-flash"
-  },
-  "default_profile": "write",
+			"provider": "google",
+			"model": "gemini-2.5-flash"
+		},
+		"default_profile": "ask",
 		"button": false,
 		"default_model": {
-			"model": "gemini-2.0-flash",
+			"model": "gemini-2.5-pro",
 			"provider": "google"
-		},
-		"version": "2"
+		}
 	},
 	"buffer_font_family": "JetBrains Mono",
 	"buffer_font_size": 13,
@@ -30,6 +29,7 @@
 	"features": {
 		"edit_prediction_provider": "none"
 	},
+	"format_on_save": "on",
 	"formatter": "auto",
 	"icon_theme": "Zed (Default)",
 	"project_panel": {
