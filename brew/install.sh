@@ -2,7 +2,6 @@
 set -e
 
 packages=(
-	ripgrep # https://github.com/BurntSushi/ripgrep
 	fnm # https://github.com/schniz/fnm
 	fzf # https://github.com/junegunn/fzf
 	git
@@ -10,6 +9,7 @@ packages=(
 	gnupg # https://github.com/gpg/gnupg
 	gron # https://github.com/tomnomnom/gron
 	jq # https://github.com/jqlang/jq
+	ripgrep # https://github.com/BurntSushi/ripgrep
 	shellcheck # https://github.com/koalaman/shellcheck
 	tealdeer # https://github.com/dbrgn/tealdeer
 	tmux # https://github.com/tmux/tmux/wiki
@@ -24,15 +24,16 @@ fonts=(
 apps=(
 	firefox
 	google-chrome
-	iterm2 # https://github.com/gnachman/iterm2
+	cryptomator # https://github.com/cryptomator/cryptomator
+	ghostty # https://github.com/ghostty-org/ghostty
 	keepassxc # https://github.com/keepassxreboot/keepassxc
 	proxyman # https://github.com/proxymanapp/proxyman
 	rectangle # https://github.com/rxhanson/rectangle
 	signal # https://github.com/signalapp/Signal-Desktop
 	stats # https://github.com/exelban/stats
 	transmission # https://github.com/transmission/transmission
-	zed # https://github.com/zed-industries/zed
 	utm # https://github.com/utmapp/UTM
+	zed # https://github.com/zed-industries/zed
 )
 
 casks=(${fonts[@]} ${apps[@]})
