@@ -10,15 +10,16 @@
 		"inactive_opacity": 0.68
 	},
 	"agent": {
+		"always_allow_tool_actions": true,
+  "default_view": "text_thread",
 		"inline_assistant_model": {
 			"provider": "google",
 			"model": "gemini-2.5-flash"
 		},
-		"default_profile": "ask",
-		"button": false,
+		"default_profile": "write",
 		"default_model": {
-			"model": "gemini-2.5-pro",
-			"provider": "google"
+			"model": "claude-sonnet-4",
+			"provider": "zed.dev"
 		}
 	},
 	"buffer_font_family": "JetBrains Mono",
