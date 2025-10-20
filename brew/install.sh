@@ -13,6 +13,7 @@ packages=(
 	shellcheck # https://github.com/koalaman/shellcheck
 	tealdeer # https://github.com/dbrgn/tealdeer
 	tmux # https://github.com/tmux/tmux/wiki
+	dagger/tap/container-use # https://container-use.com
 )
 
 fonts=(

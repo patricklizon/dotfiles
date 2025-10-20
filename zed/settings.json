@@ -11,15 +11,72 @@
 	},
 	"agent": {
 		"always_allow_tool_actions": true,
-  "default_view": "text_thread",
-		"inline_assistant_model": {
-			"provider": "google",
-			"model": "gemini-2.5-flash"
-		},
+		"default_view": "thread",
+		// https://container-use.com/agent-integrations#zed
 		"default_profile": "write",
 		"default_model": {
-			"model": "claude-sonnet-4",
-			"provider": "zed.dev"
+			"model": "gemini-2.5-pro",
+			"provider": "google"
+		},
+		"inline_assistant_model": {
+			"model": "gemini-2.5-flash",
+			"provider": "google"
+		},
+		"inline_alternatives": [
+			{
+				"provider": "google",
+				"model": "gemini-2.5-pro"
+			}
+		],
+		"profiles": {
+			// https://container-use.com/agent-integrations#zed
+			"container-use": {
+				"name": "Container Use",
+				"tools": {
+					"fetch": true,
+					"thinking": true,
+					"copy_path": false,
+					"find_path": false,
+					"delete_path": false,
+					"create_directory": false,
+					"list_directory": false,
+					"diagnostics": false,
+					"read_file": false,
+					"open": false,
+					"move_path": false,
+					"grep": false,
+					"edit_file": false,
+					"terminal": false
+				},
+				"enable_all_context_servers": false,
+				"context_servers": {
+					"container-use": {
+						"tools": {
+							"environment_add_service": true,
+							"environment_checkpoint": true,
+							"environment_config": true,
+							"environment_create": true,
+							"environment_file_delete": true,
+							"environment_file_edit": true,
+							"environment_file_list": true,
+							"environment_file_read": true,
+							"environment_file_write": true,
+							"environment_open": true,
+							"environment_run_cmd": true,
+							"environment_update_metadata": true
+						}
+					}
+				}
+			}
+		}
+	},
+	"context_servers": {
+		"container-use": {
+			"enabled": true,
+			"source": "custom",
+			"command": "container-use",
+			"args": ["stdio"],
+			"env": {}
 		}
 	},
 	"buffer_font_family": "JetBrains Mono",
