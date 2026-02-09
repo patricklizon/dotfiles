@@ -14,6 +14,7 @@ packages=(
 	tealdeer # https://github.com/dbrgn/tealdeer
 	tmux # https://github.com/tmux/tmux/wiki
 	dagger/tap/container-use # https://container-use.com
+	cloudflared # https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/downloads/
 )
 
 fonts=(
@@ -35,6 +36,7 @@ apps=(
 	transmission # https://github.com/transmission/transmission
 	utm # https://github.com/utmapp/UTM
 	zed # https://github.com/zed-industries/zed
+	nikitabobko/tap/aerospace # https://github.com/nikitabobko/AeroSpace
 )
 
 casks=(${fonts[@]} ${apps[@]})

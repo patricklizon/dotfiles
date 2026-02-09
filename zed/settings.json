@@ -6,115 +6,104 @@
 // To see all of Zed's default settings without changing your
 // custom settings, run the `open default settings` command
 {
+	"context_servers": {
+		"mcp-server-context7": {
+   "enabled": true,
+			"remote": false,
+			"settings": {
+				"context7_api_key": "ctx7sk-5e4f789e-cb4b-44ab-ab5d-7138a5ee2df3",
+			},
+		},
+	},
+	"agent_servers": {
+		"codex": {
+   "favorite_models": [
+    "gpt-5.3-codex/medium"
+   ]
+  },
+  "claude": {
+			"favorite_models": ["sonnet"],
+		},
+		"opencode": {
+			"type": "extension",
+			"favorite_models": [],
+			"default_config_options": {},
+			"favorite_config_option_values": {},
+		},
+	},
+	"lsp": {
+		"vtsls": {
+			"settings": {
+				"typescript": {
+					"updateImportsOnFileMove": {
+						"enabled": "always",
+					},
+				},
+				"javascript": {
+					"updateImportsOnFileMove": {
+						"enabled": "always",
+					},
+				},
+			},
+			"enable_lsp_tasks": true,
+		},
+	},
+	"git": {
+		"inline_blame": {
+			"padding": 4,
+		},
+	},
+	"expand_excerpt_lines": 5,
 	"active_pane_modifiers": {
-		"inactive_opacity": 0.68
+		"inactive_opacity": 0.68,
 	},
 	"agent": {
+		"show_turn_stats": true,
+		"message_editor_min_lines": 5,
+		"notify_when_agent_waiting": "all_screens",
 		"use_modifier_to_send": true,
 		"play_sound_when_agent_done": false,
 		"always_allow_tool_actions": true,
 		"default_view": "thread",
-		// https://container-use.com/agent-integrations#zed
 		"default_profile": "write",
-		"default_model": {
-			"model": "gemini-2.5-pro",
-			"provider": "google"
-		},
-		"inline_assistant_model": {
-			"model": "gemini-2.5-flash",
-			"provider": "google"
-		},
-		"inline_alternatives": [
-			{
-				"provider": "google",
-				"model": "gemini-2.5-pro"
-			}
-		],
-		"profiles": {
-			// https://container-use.com/agent-integrations#zed
-			"container-use": {
-				"name": "Container Use",
-				"tools": {
-					"fetch": true,
-					"thinking": true,
-					"copy_path": false,
-					"find_path": false,
-					"delete_path": false,
-					"create_directory": false,
-					"list_directory": false,
-					"diagnostics": false,
-					"read_file": false,
-					"open": false,
-					"move_path": false,
-					"grep": false,
-					"edit_file": false,
-					"terminal": false
-				},
-				"enable_all_context_servers": false,
-				"context_servers": {
-					"container-use": {
-						"tools": {
-							"environment_add_service": true,
-							"environment_checkpoint": true,
-							"environment_config": true,
-							"environment_create": true,
-							"environment_file_delete": true,
-							"environment_file_edit": true,
-							"environment_file_list": true,
-							"environment_file_read": true,
-							"environment_file_write": true,
-							"environment_open": true,
-							"environment_run_cmd": true,
-							"environment_update_metadata": true
-						}
-					}
-				}
-			}
-		}
-	},
-	"context_servers": {
-		"container-use": {
-			"enabled": true,
-			"source": "custom",
-			"command": "container-use",
-			"args": ["stdio"],
-			"env": {}
-		}
+		"profiles": {},
 	},
 	"buffer_font_family": "JetBrains Mono",
 	"buffer_font_size": 13,
 	"edit_predictions": {
-		"mode": "subtle"
+		"provider": "none",
+		"mode": "subtle",
 	},
-	"features": {
-		"edit_prediction_provider": "none"
+	"file_types": {
+		"Dockerfile": ["Dockerfile", "Dockerfile.*"],
+		"nginx": ["nginx/*.conf"],
 	},
 	"format_on_save": "on",
 	"formatter": "auto",
-	"icon_theme": "Zed (Default)",
+	"icon_theme": "Colored Zed Icons Theme Light",
 	"project_panel": {
 		"entry_spacing": "comfortable",
-		"folder_icons": false
+		"folder_icons": false,
 	},
-	"relative_line_numbers": true,
+	"relative_line_numbers": "wrapped",
 	"scroll_beyond_last_line": "off",
 	"show_whitespaces": "boundary",
 	"show_wrap_guides": true,
 	"soft_wrap": "editor_width",
 	"tab_bar": {
 		"show": true,
-		"show_nav_history_buttons": false
+		"show_nav_history_buttons": false,
 	},
 	"hard_tabs": true,
-	"tab_size": 4,
+	"tab_size": 2,
 	"tabs": {
 		"git_status": true,
 		"file_icons": true,
-		"show_diagnostics": "all"
+		"show_diagnostics": "all",
 	},
 	"telemetry": {
 		"diagnostics": false,
-		"metrics": false
+		"metrics": false,
 	},
 	"terminal": {
 		"button": false,
@@ -122,12 +111,12 @@
 		"cursor_shape": "bar",
 		"copy_on_select": true,
 		"env": {
-			"EDITOR": "zed --wait"
-		}
+			"EDITOR": "zed --wait",
+		},
 	},
 	"theme": {
-		"dark": "Ayu Dark",
-		"light": "Ayu Mirage"
+		"dark": "One Dark Pro",
+		"light": "Gruvbox Light Soft",
 	},
 	"ui_font_size": 16,
 	"vim": {
@@ -135,11 +124,11 @@
 			"insert": "bar",
 			"normal": "block",
 			"replace": "underline",
-			"visual": "hollow"
+			"visual": "hollow",
 		},
-		"use_system_clipboard": "always"
+		"use_system_clipboard": "on_yank",
 	},
 	"vim_mode": true,
 	"wrap_guides": [100, 120],
-	"confirm_quit": true
+	"confirm_quit": true,
 }
