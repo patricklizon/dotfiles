@@ -6,29 +6,38 @@
 // To see all of Zed's default settings without changing your
 // custom settings, run the `open default settings` command
 {
+	"cli_default_open_behavior": "new_window",
+ "diff_view_style": "split",
+ "proxy": "",
+	"outline_panel": {
+		"dock": "right",
+	},
+	"collaboration_panel": {
+		"dock": "right",
+	},
+	"git_panel": {
+		"dock": "right",
+	},
 	"context_servers": {
-		"mcp-server-context7": {
-   "enabled": true,
+		"mcp-server-playwright": {
+			"enabled": false,
 			"remote": false,
-			"settings": {
-				"context7_api_key": "ctx7sk-5e4f789e-cb4b-44ab-ab5d-7138a5ee2df3",
-			},
+			"settings": {},
 		},
 	},
 	"agent_servers": {
-		"codex": {
-   "favorite_models": [
-    "gpt-5.3-codex/medium"
-   ]
-  },
-  "claude": {
-			"favorite_models": ["sonnet"],
-		},
-		"opencode": {
-			"type": "extension",
-			"favorite_models": [],
-			"default_config_options": {},
-			"favorite_config_option_values": {},
+		"codex-acp": {
+			"default_config_options": {
+    "reasoning_effort": "xhigh",
+    "model": "gpt-5.3-codex"
+   },
+   "favorite_config_option_values": {
+				"model": [
+     "gpt-5.3-codex"
+    ],
+    "reasoning_effort": ["high"],
+			},
+			"type": "registry",
 		},
 	},
 	"lsp": {
@@ -58,19 +67,33 @@
 		"inactive_opacity": 0.68,
 	},
 	"agent": {
+		"inline_assistant_model": {
+   "provider": "openai-subscribed",
+   "model": "gpt-5.4-mini",
+   "enable_thinking": false
+  },
+  "default_model": {
+   "provider": "openai-subscribed",
+   "model": "gpt-5.3-codex",
+   "enable_thinking": true,
+   "effort": "high"
+  },
+  "thinking_display": "preview",
+		"dock": "left",
 		"show_turn_stats": true,
 		"message_editor_min_lines": 5,
 		"notify_when_agent_waiting": "all_screens",
 		"use_modifier_to_send": true,
-		"play_sound_when_agent_done": false,
-		"always_allow_tool_actions": true,
-		"default_view": "thread",
+		"play_sound_when_agent_done": "when_hidden",
 		"default_profile": "write",
 		"profiles": {},
 	},
 	"buffer_font_family": "JetBrains Mono",
 	"buffer_font_size": 13,
 	"edit_predictions": {
+		"open_ai_compatible_api": {
+			"model": "",
+		},
 		"provider": "none",
 		"mode": "subtle",
 	},
@@ -82,8 +105,8 @@
 	"formatter": "auto",
 	"icon_theme": "Colored Zed Icons Theme Light",
 	"project_panel": {
-		"entry_spacing": "comfortable",
-		"folder_icons": false,
+		"dock": "right",
+		"entry_spacing": "standard",
 	},
 	"relative_line_numbers": "wrapped",
 	"scroll_beyond_last_line": "off",
@@ -102,7 +125,7 @@
 		"show_diagnostics": "all",
 	},
 	"telemetry": {
-		"diagnostics": false,
+		"diagnostics": true,
 		"metrics": false,
 	},
 	"terminal": {
@@ -115,7 +138,8 @@
 		},
 	},
 	"theme": {
-		"dark": "One Dark Pro",
+		"mode": "dark",
+		"dark": "Ayu Dark",
 		"light": "Gruvbox Light Soft",
 	},
 	"ui_font_size": 16,
