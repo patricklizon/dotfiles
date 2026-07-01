@@ -123,3 +123,4 @@ source "$HOME/google-cloud-sdk/completion.zsh.inc"
     . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
  fi
  # End Nix
+autoload -U compinit; compinit
