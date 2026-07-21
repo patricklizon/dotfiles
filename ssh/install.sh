@@ -9,12 +9,7 @@ configure_macos_keychain() {
     /usr/bin/ssh-add --apple-use-keychain "${SSH_KEY_PATH}"
 
     if ! grep -q "UseKeychain yes" "${SSH_CONFIG_DIR}" 2>/dev/null; then
-        echo -e "
-            Host *\n
-              UseKeychain yes\n
-              AddKeysToAgent yes\n
-              IdentityFile ${SSH_KEY_PATH}" >> "${SSH_CONFIG_DIR}
-        "
+        printf '\nHost *\n  UseKeychain yes\n  AddKeysToAgent yes\n  IdentityFile %s\n' "${SSH_KEY_PATH}" >> "${SSH_CONFIG_DIR}"
 
         echo "Configured macOS keychain integration in ~/.ssh/config.\n"
     fi
@@ -23,7 +18,12 @@ configure_macos_keychain() {
 main() {
     echo "Setting up SSH key...\n"
 
-    ssh-keygen -t "${SSH_KEY_TYPE}" -f "${SSH_KEY_PATH}"
+    if [ ! -f "${SSH_KEY_PATH}" ]; then
+        ssh-keygen -t "${SSH_KEY_TYPE}" -f "${SSH_KEY_PATH}"
+    else
+        echo "SSH key already exists at ${SSH_KEY_PATH}, skipping generation.\n"
+    fi
+
     eval "$(ssh-agent -s)"
     ssh-add "${SSH_KEY_PATH}"
 
