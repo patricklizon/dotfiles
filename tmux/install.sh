@@ -4,22 +4,22 @@ set -e
 source "${PWD}/constants.sh"
 
 DIR="${CONFIG_DIR}/tmux/"
-TPM_DIR="${HOME}/.tmux/plugin/tpm"
+TPM_DIR="${HOME}/.tmux/plugins/tpm"
 PWD_PATH="${PWD}/tmux/"
 
 install_tpm() {
-	if test ! -d ~/.tmux/plugins/tpm "${TPM_DIR}"; then
-		git clone "https://github.com/tmux-plugins/tpm ${TPM_DIR}"
+	if [ ! -d "${TPM_DIR}" ]; then
+		git clone "https://github.com/tmux-plugins/tpm" "${TPM_DIR}"
 	fi
 
-	${TPM_DIR}/bin/install_plugins
+	"${TPM_DIR}/bin/install_plugins"
 }
 
 main() {
 	echo "Setting up tmux...\n"
 
 	if [ ! -d "${DIR}" ]; then
-		mkdir -p ${DIR}
+		mkdir -p "${DIR}"
 	fi
 
 	echo "\nLinking files...\n"
