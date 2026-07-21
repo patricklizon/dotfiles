@@ -3,7 +3,7 @@ set -e
 
 check_and_create_file() {
 	local target=$1
-	if [-e "${target}" ]; then
+	if [ -e "${target}" ]; then
 		echo "Backing up existing file: ${target}"
 		mv "${target}" "${target}.backup"
 	fi

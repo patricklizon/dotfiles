@@ -20,16 +20,23 @@
 	},
 	"context_servers": {
 		"mcp-server-playwright": {
-			"enabled": false,
+   "enabled": false,
 			"remote": false,
 			"settings": {},
 		},
 	},
 	"agent_servers": {
-		"codex-acp": {
+		"claude-acp": {
+   "default_config_options": {
+    "mode": "default",
+    "effort": "medium"
+   },
+   "type": "registry"
+  },
+  "codex-acp": {
 			"default_config_options": {
-    "reasoning_effort": "xhigh",
-    "model": "gpt-5.3-codex"
+    "reasoning_effort": "high",
+    "model": "gpt-5.6-terra"
    },
    "favorite_config_option_values": {
 				"model": [
@@ -67,7 +74,9 @@
 		"inactive_opacity": 0.68,
 	},
 	"agent": {
-		"inline_assistant_model": {
+		"expand_edit_card": false,
+  "expand_terminal_card": false,
+  "inline_assistant_model": {
    "provider": "openai-subscribed",
    "model": "gpt-5.4-mini",
    "enable_thinking": false
@@ -84,7 +93,7 @@
 		"message_editor_min_lines": 5,
 		"notify_when_agent_waiting": "all_screens",
 		"use_modifier_to_send": true,
-		"play_sound_when_agent_done": "when_hidden",
+		"play_sound_when_agent_done": "never",
 		"default_profile": "write",
 		"profiles": {},
 	},

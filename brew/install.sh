@@ -67,15 +67,15 @@ install_with_brew() {
 		echo "$pkg is not found. Installing now...\n"
 		if [ "$is_cask" = "--cask" ]; then
 			if brew install --cask "$pkg"; then
-				"The cask ${pkg} has been successfully installed.\n"
+				echo "The cask ${pkg} has been successfully installed.\n"
 			else
-				"Failed to install the cask $pkg.\n"
+				echo "Failed to install the cask $pkg.\n"
 			fi
 		else
 			if brew install "$pkg"; then
-				"The formula ${pkg} has been successfully installed.\n"
+				echo "The formula ${pkg} has been successfully installed.\n"
 			else
-				"Failed to install the formula $pkg.\n"
+				echo "Failed to install the formula $pkg.\n"
 			fi
 		fi
 	fi
