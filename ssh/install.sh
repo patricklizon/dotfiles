@@ -8,8 +8,8 @@ configure_macos_keychain() {
 
     /usr/bin/ssh-add --apple-use-keychain "${SSH_KEY_PATH}"
 
-    if ! grep -q "UseKeychain yes" "${SSH_CONFIG_DIR}" 2>/dev/null; then
-        printf '\nHost *\n  UseKeychain yes\n  AddKeysToAgent yes\n  IdentityFile %s\n' "${SSH_KEY_PATH}" >> "${SSH_CONFIG_DIR}"
+    if ! grep -q "# managed-by-dotfiles: macos-keychain" "${SSH_CONFIG_DIR}" 2>/dev/null; then
+        printf '\n# managed-by-dotfiles: macos-keychain\nHost *\n  UseKeychain yes\n  AddKeysToAgent yes\n  IdentityFile %s\n' "${SSH_KEY_PATH}" >> "${SSH_CONFIG_DIR}"
 
         echo "Configured macOS keychain integration in ~/.ssh/config.\n"
     fi

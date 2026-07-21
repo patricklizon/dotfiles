@@ -3,7 +3,7 @@ set -e
 
 source "${PWD}/constants.sh"
 
-DIR="${CONFIG_DIR}/git/"
+DIR="${HOME}/"
 PWD_PATH="${PWD}/git/"
 LOCAL_GIT_CONFIG="${HOME}/.gitconfig.local"
 
@@ -24,10 +24,15 @@ create_symlinks() {
 		.gitignore
 	)
 
-	mkdir -p "${DIR}"
-
 	for file in "${files[@]}"; do
-		ln -sf "${PWD_PATH}${file}" "${DIR}${file}"
+		target="${DIR}${file}"
+
+		if [ -e "${target}" ] && [ ! -L "${target}" ]; then
+			echo "Backing up existing file: ${target}"
+			mv "${target}" "${target}.backup"
+		fi
+
+		ln -sf "${PWD_PATH}${file}" "${target}"
 	done
 }
 
