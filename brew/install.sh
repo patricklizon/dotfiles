@@ -4,6 +4,7 @@ set -e
 packages=(
 	fnm # https://github.com/schniz/fnm
 	fzf # https://github.com/junegunn/fzf
+	docker # https://formulae.brew.sh/formula/docker
 	git
 	glow # https://github.com/charmbracelet/glow
 	gnupg # https://github.com/gpg/gnupg
