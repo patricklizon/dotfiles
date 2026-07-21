@@ -11,7 +11,7 @@ command_exists() {
 install_oh_my_zsh() {
     if [ ! -d "${OMZ_DIR}" ]; then
         echo "Installing Oh My Zsh...\n"
-        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        CHSH=no RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     else
         echo "Oh My Zsh is already installed.\n"
     fi

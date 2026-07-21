@@ -3,12 +3,9 @@ set -e
 
 check_and_create_file() {
 	local target=$1
-	if [ -e "${target}" ]; then
-		echo "Backing up existing file: ${target}"
-		mv "${target}" "${target}.backup"
+	if [ ! -e "${target}" ]; then
+		touch "${target}"
 	fi
-
-	touch "${target}"
 }
 
 add_initializers() {

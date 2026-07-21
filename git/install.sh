@@ -20,9 +20,11 @@ copy_gitconfig_local() {
 
 create_symlinks() {
 	files=(
-		.gitconfig.json
-		.gitignore.json
+		.gitconfig
+		.gitignore
 	)
+
+	mkdir -p "${DIR}"
 
 	for file in "${files[@]}"; do
 		ln -sf "${PWD_PATH}${file}" "${DIR}${file}"
