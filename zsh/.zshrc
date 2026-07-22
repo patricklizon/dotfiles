@@ -71,6 +71,7 @@ ZSH_THEME="nicoulaj"
 plugins=(
     git
     npm
+    direnv
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -115,8 +116,6 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_FIND_NO_DUPS
 
 export PATH="$PATH:$HOME/google-cloud-sdk/bin"
-source "$HOME/google-cloud-sdk/path.zsh.inc"
-source "$HOME/google-cloud-sdk/completion.zsh.inc"
 
  # Nix
  if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then

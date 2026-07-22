@@ -21,7 +21,8 @@
 	defaultBranch = master
 
 [user]
-	name = Patrick Lizoń
+	name = Patryk Lizoń
+	email = 12571855+patricklizon@users.noreply.github.com
 	useConfigOnly = true
 
 [safe]
@@ -32,3 +33,6 @@
 
 [rebase]
 	autostash = true
+
+[push]
+	autoSetupRemote = true
