@@ -11,7 +11,7 @@ copy_gitconfig_local() {
 	if [ ! -f "${LOCAL_GIT_CONFIG}" ]; then
 		cp "${PWD_PATH}/.gitconfig.local" "${LOCAL_GIT_CONFIG}"
 
-		sed -i '' "s|GIT_SIGNKEY|${SSH_KEY_PATH}.pub|" "${LOCAL_GIT_CONFIG}"
+		sed -i '' "s|GIT_SIGNKEY|~/.ssh/id_${SSH_KEY_TYPE}.pub|" "${LOCAL_GIT_CONFIG}"
 	fi
 }
 
