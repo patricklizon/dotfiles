@@ -115,7 +115,11 @@ setopt HIST_SAVE_NO_DUPS
 # Don't display dupes during reverse search
 setopt HIST_FIND_NO_DUPS
 
-export PATH="$PATH:$HOME/google-cloud-sdk/bin"
+if [ -d "$HOME/google-cloud-sdk" ]; then
+  export PATH="$PATH:$HOME/google-cloud-sdk/bin"
+  [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ] && source "$HOME/google-cloud-sdk/path.zsh.inc"
+  [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ] && source "$HOME/google-cloud-sdk/completion.zsh.inc"
+fi
 
  # Nix
  if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then

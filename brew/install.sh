@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
-set -e
+set -euo pipefail
+
+taps=(
+	"ix-infrastructure/ix https://github.com/ix-infrastructure/Ix"
+)
 
 packages=(
 	fnm # https://github.com/schniz/fnm
@@ -16,6 +20,8 @@ packages=(
 	tmux # https://github.com/tmux/tmux/wiki
 	dagger/tap/container-use # https://container-use.com
 	cloudflared # https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/downloads/
+	rtk # https://github.com/rtk-ai/rtk
+	ix # https://github.com/ix-infrastructure/Ix
 )
 
 fonts=(
@@ -38,23 +44,44 @@ apps=(
 	utm # https://github.com/utmapp/UTM
 	zed # https://github.com/zed-industries/zed
 	nikitabobko/tap/aerospace # https://github.com/nikitabobko/AeroSpace
+	codex # https://github.com/openai/codex
 )
 
 casks=(${fonts[@]} ${apps[@]})
 
 is_already_installed_with_brew() {
 	local pkg=$1
-	if brew list --formula | grep -q "^${pkg}\$" || brew list --cask | grep -q "^${pkg}\$"; then
-		return 0
+	local install_type=${2:-}
+	local package_name=${pkg##*/}
+
+	if [[ "$install_type" == "--cask" ]]; then
+		brew list --cask --versions "$package_name" &> /dev/null
 	else
-		return 1
+		brew list --formula --versions "$package_name" &> /dev/null
 	fi
+
+}
+
+install_taps() {
+	local tap_spec tap_name tap_url
+
+	for tap_spec in "${taps[@]}"; do
+		tap_name=${tap_spec%% *}
+		tap_url=${tap_spec#* }
+
+		if brew tap | grep -Fx "$tap_name" > /dev/null; then
+			printf '%s is already tapped.\n' "$tap_name"
+		else
+			printf '%s is not tapped. Tapping now...\n' "$tap_name"
+			brew tap "$tap_name" "$tap_url"
+		fi
+	done
 
 }
 
 install_with_brew() {
 	local pkg=$1
-	local is_cask=$2
+	local is_cask=${2:-}
 
 	# Check if Homebrew is installed
 	if ! command -v brew &> /dev/null; then
@@ -63,21 +90,15 @@ install_with_brew() {
 	fi
 
 	if is_already_installed_with_brew "$pkg" "$is_cask"; then
-		echo "$pkg is already installed.\n"
+		printf '%s is already installed.\n' "$pkg"
 	else
-		echo "$pkg is not found. Installing now...\n"
+		printf '%s is not found. Installing now...\n' "$pkg"
 		if [ "$is_cask" = "--cask" ]; then
-			if brew install --cask "$pkg"; then
-				echo "The cask ${pkg} has been successfully installed.\n"
-			else
-				echo "Failed to install the cask $pkg.\n"
-			fi
+			brew install --cask "$pkg"
+			printf 'The cask %s has been successfully installed.\n' "$pkg"
 		else
-			if brew install "$pkg"; then
-				echo "The formula ${pkg} has been successfully installed.\n"
-			else
-				echo "Failed to install the formula $pkg.\n"
-			fi
+			brew install "$pkg"
+			printf 'The formula %s has been successfully installed.\n' "$pkg"
 		fi
 	fi
 }
@@ -101,11 +122,18 @@ cleanup() {
 }
 
 main() {
-	if test ! $(which brew); then
+	if ! command -v brew &> /dev/null; then
 		printf "\nInstalling the brew package manager\n"
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+		if [[ -x /opt/homebrew/bin/brew ]]; then
+			eval "$(/opt/homebrew/bin/brew shellenv)"
+		elif [[ -x /usr/local/bin/brew ]]; then
+			eval "$(/usr/local/bin/brew shellenv)"
+		fi
 	fi
 
+	install_taps
 	install_packages
 	install_casks
 	cleanup
