@@ -25,7 +25,18 @@ main() {
 	echo "\nLinking files...\n"
 
 	local file="tmux.conf"
-	ln -sf "${PWD_PATH}${file}" "${DIR}${file}"
+	local source="${PWD_PATH}${file}"
+	local destination="${DIR}${file}"
+
+	if [[ ! -L "$destination" || "$(readlink "$destination")" != "$source" ]]; then
+		if [[ -e "$destination" || -L "$destination" ]]; then
+			local backup_dir
+			backup_dir=$(mktemp -d "${DIR}backup.XXXXXX")
+			mv "$destination" "${backup_dir}/${file}"
+			printf 'Backed up %s to %s\n' "$destination" "$backup_dir"
+		fi
+		ln -s "$source" "$destination"
+	fi
 
 	echo "\nInstalling tpm...\n"
 
