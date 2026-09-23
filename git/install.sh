@@ -16,6 +16,7 @@ copy_gitconfig_local() {
 }
 
 create_symlinks() {
+	local backup_dir=""
 	files=(
 		.gitconfig
 		.gitignore
@@ -23,13 +24,21 @@ create_symlinks() {
 
 	for file in "${files[@]}"; do
 		target="${DIR}${file}"
+		local source="${PWD_PATH}${file}"
 
-		if [ -e "${target}" ] && [ ! -L "${target}" ]; then
-			echo "Backing up existing file: ${target}"
-			mv "${target}" "${target}.backup"
+		if [[ -L "${target}" && "$(readlink "${target}")" == "${source}" ]]; then
+			continue
 		fi
 
-		ln -sf "${PWD_PATH}${file}" "${target}"
+		if [[ -e "${target}" || -L "${target}" ]]; then
+			if [[ -z "${backup_dir}" ]]; then
+				backup_dir=$(mktemp -d "${HOME}/.dotfiles-backup.XXXXXX")
+			fi
+			mv "${target}" "${backup_dir}/${file}"
+			printf 'Backed up %s to %s\n' "${target}" "${backup_dir}"
+		fi
+
+		ln -s "${source}" "${target}"
 	done
 }
 
