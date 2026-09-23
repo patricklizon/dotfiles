@@ -72,6 +72,25 @@ ensure_command_line_tools() {
 	done
 }
 
+ensure_xcode_ready() {
+	local developer_dir output
+	developer_dir=$(/usr/bin/xcode-select -p) || return 1
+	[[ "$developer_dir" == *.app/Contents/Developer ]] || return 0
+
+	while true; do
+		if output=$(/usr/bin/xcodebuild -version 2>&1); then
+			return 0
+		fi
+		printf '\nXcode is not ready:\n%s\n' "$output" >&2
+		ask 'Review Xcode license, recheck, or abort? [l/r/a] ' || return 1
+		case "$answer" in
+			l|L|'') sudo /usr/bin/xcodebuild -license || true ;;
+			r|R) ;;
+			a|A) return 1 ;;
+		esac
+	done
+}
+
 activate_homebrew() {
 	local brew_bin shell_environment
 	if command -v brew &> /dev/null; then
@@ -176,6 +195,10 @@ main() {
 	esac
 	ensure_command_line_tools || {
 		printf 'Command Line Tools are required before setup can continue.\n' >&2
+		return 1
+	}
+	ensure_xcode_ready || {
+		printf 'Xcode must be ready before setup can continue.\n' >&2
 		return 1
 	}
 
