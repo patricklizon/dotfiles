@@ -12,3 +12,5 @@ xcode-select --install
 # run script
 ./install.sh
 ```
+
+Launch Docker Desktop once before using Ix or other tools that need a Docker engine.

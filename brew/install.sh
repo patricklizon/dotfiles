@@ -8,7 +8,6 @@ taps=(
 packages=(
 	fnm # https://github.com/schniz/fnm
 	fzf # https://github.com/junegunn/fzf
-	docker # https://formulae.brew.sh/formula/docker
 	git
 	glow # https://github.com/charmbracelet/glow
 	gnupg # https://github.com/gpg/gnupg
@@ -31,6 +30,7 @@ fonts=(
 )
 
 apps=(
+	docker-desktop # https://formulae.brew.sh/cask/docker-desktop
 	firefox
 	google-chrome
 	cryptomator # https://github.com/cryptomator/cryptomator
