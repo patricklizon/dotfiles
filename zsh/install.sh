@@ -27,6 +27,7 @@ main() {
 	echo "Setting up zsh..."
 
 	check_and_create_file "${HOME}/.secrets"
+	chmod 600 "${HOME}/.secrets"
 	check_and_create_file "${HOME}/.initializers"
 	add_initializers
 
