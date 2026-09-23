@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 set -e
 
-source "${PWD}/constants.sh"
+source "${0:A:h:h}/constants.sh"
 
 configure_macos_keychain() {
     echo "Adding ssh key to keychain...\n"

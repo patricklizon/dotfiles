@@ -1,11 +1,11 @@
 #!/usr/bin/env zsh
 set -e
 
-source "${PWD}/constants.sh"
+source "${0:A:h:h}/constants.sh"
 
 DIR="${CONFIG_DIR}/tmux/"
 TPM_DIR="${HOME}/.tmux/plugins/tpm"
-PWD_PATH="${PWD}/tmux/"
+PWD_PATH="${0:A:h}/"
 
 install_tpm() {
 	if [ ! -d "${TPM_DIR}" ]; then

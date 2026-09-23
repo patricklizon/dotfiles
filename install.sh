@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 set -e
 
+cd "$(dirname "$0")"
+
 ./bin/run.sh install ssh
 
 ./bin/run.sh install brew

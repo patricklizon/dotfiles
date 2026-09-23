@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 set -e
+SCRIPT_DIR="${0:A:h}"
 
 OMZ_DIR="${HOME}/.oh-my-zsh"
 CUSTOM_DIR="${OMZ_DIR}/custom"
@@ -24,7 +25,7 @@ symlink_custom_files() {
 
     for it in aliases exports functions bind; do
         target="${CUSTOM_DIR}/${it}.zsh"
-        source="${PWD}/omz/${it}.zsh"
+        source="${SCRIPT_DIR}/${it}.zsh"
 
         if [[ -L "${target}" && "$(readlink "${target}")" == "${source}" ]]; then
             continue

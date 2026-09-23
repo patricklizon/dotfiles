@@ -1,10 +1,10 @@
 #!/usr/bin/env zsh
 set -e
 
-source "${PWD}/constants.sh"
+source "${0:A:h:h}/constants.sh"
 
 DIR="${HOME}/"
-PWD_PATH="${PWD}/git/"
+PWD_PATH="${0:A:h}/"
 LOCAL_GIT_CONFIG="${HOME}/.gitconfig.local"
 
 copy_gitconfig_local() {

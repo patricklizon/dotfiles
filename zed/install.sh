@@ -1,10 +1,10 @@
 #!/usr/bin/env zsh
 set -e
 
-source "${PWD}/constants.sh"
+source "${0:A:h:h}/constants.sh"
 
 DIR="${CONFIG_DIR}/zed/"
-PWD_PATH="${PWD}/zed/"
+PWD_PATH="${0:A:h}/"
 
 main() {
 	echo "Setting up zed..."

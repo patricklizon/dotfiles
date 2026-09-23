@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 set -e
+SCRIPT_DIR="${0:A:h}"
 
 check_and_create_file() {
 	local target=$1
@@ -29,7 +30,7 @@ main() {
 	check_and_create_file "${HOME}/.initializers"
 	add_initializers
 
-	local target="${PWD}/zsh/.zshrc"
+	local target="${SCRIPT_DIR}/.zshrc"
 	local destination="${HOME}/.zshrc"
 
 	if [[ -L "$destination" && "$(readlink "$destination")" == "$target" ]]; then
