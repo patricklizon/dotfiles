@@ -47,7 +47,15 @@ apps=(
 	codex # https://github.com/openai/codex
 )
 
-casks=(${fonts[@]} ${apps[@]})
+casks=("${fonts[@]}" "${apps[@]}")
+
+print_plan() {
+	printf '  Tap: %s\n' "${taps[@]}"
+	printf '  Formulae:\n'
+	printf '    %s\n' "${packages[@]}"
+	printf '  Casks:\n'
+	printf '    %s\n' "${casks[@]}"
+}
 
 is_already_installed_with_brew() {
 	local pkg=$1
@@ -115,16 +123,29 @@ install_casks() {
 	done
 }
 
-cleanup() {
-	echo "Cleaning up...\n"
-	brew autoremove --verbose
-	brew cleanup --prune=all
-}
-
 main() {
+	if [[ "${1:-}" == "--plan" ]]; then
+		print_plan
+		return
+	fi
+	if (( $# )); then
+		printf 'Usage: %s [--plan]\n' "$0" >&2
+		return 2
+	fi
+
+	if ! command -v brew &> /dev/null; then
+		if [[ -x /opt/homebrew/bin/brew ]]; then
+			eval "$(/opt/homebrew/bin/brew shellenv)"
+		elif [[ -x /usr/local/bin/brew ]]; then
+			eval "$(/usr/local/bin/brew shellenv)"
+		fi
+	fi
+
 	if ! command -v brew &> /dev/null; then
 		printf "\nInstalling the brew package manager\n"
-		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+		local installer
+		installer=$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)
+		/bin/bash -c "$installer"
 
 		if [[ -x /opt/homebrew/bin/brew ]]; then
 			eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -136,9 +157,6 @@ main() {
 	install_taps
 	install_packages
 	install_casks
-	cleanup
-
-	printf "\nRestart your terminal or source your ~/.zshrc file.\n"
 }
 
-main
+main "$@"

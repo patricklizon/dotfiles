@@ -9,9 +9,35 @@ LOCAL_GIT_CONFIG="${HOME}/.gitconfig.local"
 
 copy_gitconfig_local() {
 	if [ ! -f "${LOCAL_GIT_CONFIG}" ]; then
-		cp "${PWD_PATH}/.gitconfig.local" "${LOCAL_GIT_CONFIG}"
+		local email="${DOTFILES_GIT_EMAIL:-}"
+		while [[ -z "$email" ]]; do
+			if [[ ! -t 0 ]]; then
+				printf 'Set DOTFILES_GIT_EMAIL for non-interactive setup.\n' >&2
+				return 1
+			fi
+			printf 'Git email: '
+			IFS= read -r email
+		done
 
-		sed -i '' "s|GIT_SIGNKEY|~/.ssh/id_${SSH_KEY_TYPE}.pub|" "${LOCAL_GIT_CONFIG}"
+		local temp_config
+		temp_config=$(mktemp "${LOCAL_GIT_CONFIG}.XXXXXX")
+		if ! cp "${PWD_PATH}/.gitconfig.local" "$temp_config" ||
+			! git config -f "$temp_config" user.email "$email"; then
+			rm -f "$temp_config"
+			return 1
+		fi
+		if [[ -f "${SSH_KEY_PATH}" ]]; then
+			if ! git config -f "$temp_config" user.signingkey "${SSH_KEY_PATH}"; then
+				rm -f "$temp_config"
+				return 1
+			fi
+		else
+			if ! git config -f "$temp_config" commit.gpgsign false; then
+				rm -f "$temp_config"
+				return 1
+			fi
+		fi
+		mv "$temp_config" "${LOCAL_GIT_CONFIG}"
 	fi
 }
 

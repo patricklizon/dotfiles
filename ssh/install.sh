@@ -27,9 +27,6 @@ main() {
         echo "SSH key already exists at ${SSH_KEY_PATH}, skipping generation.\n"
     fi
 
-    eval "$(ssh-agent -s)"
-    ssh-add "${SSH_KEY_PATH}"
-
     configure_macos_keychain
 }
 
