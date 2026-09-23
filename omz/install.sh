@@ -20,24 +20,26 @@ install_oh_my_zsh() {
 # Function to symlink custom files
 symlink_custom_files() {
     echo "Symlinking custom files...\n"
+    local backup_dir=""
 
     for it in aliases exports functions bind; do
         target="${CUSTOM_DIR}/${it}.zsh"
         source="${PWD}/omz/${it}.zsh"
 
-        if [ -e "${target}" ]; then
-            echo "Backing up existing file: ${target}"
-            mv "${target}" "${target}.backup"
+        if [[ -L "${target}" && "$(readlink "${target}")" == "${source}" ]]; then
+            continue
         fi
 
-        ln -sf "${source}" "${target}"
-
-        if [ $? -eq 0 ]; then
-            echo "Symlinked ${source} to ${target}"
-        else
-            echo "Error symlinking ${source} to ${target}"
-            exit 1
+        if [[ -e "${target}" || -L "${target}" ]]; then
+            if [[ -z "${backup_dir}" ]]; then
+                backup_dir=$(mktemp -d "${CUSTOM_DIR}/dotfiles-backup.XXXXXX")
+            fi
+            mv "${target}" "${backup_dir}/${it}.zsh"
+            printf 'Backed up %s to %s\n' "${target}" "${backup_dir}"
         fi
+
+        ln -s "${source}" "${target}"
+        echo "Symlinked ${source} to ${target}"
     done
 }
 
