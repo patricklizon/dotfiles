@@ -17,6 +17,9 @@ configure_macos_keychain() {
 
 main() {
     echo "Setting up SSH key...\n"
+    local ssh_dir="${SSH_KEY_PATH%/*}"
+    mkdir -p -m 700 "${ssh_dir}"
+    chmod 700 "${ssh_dir}"
 
     if [ ! -f "${SSH_KEY_PATH}" ]; then
         ssh-keygen -t "${SSH_KEY_TYPE}" -f "${SSH_KEY_PATH}"
