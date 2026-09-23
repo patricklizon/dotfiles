@@ -8,6 +8,7 @@ PWD_PATH="${PWD}/zed/"
 
 main() {
 	echo "Setting up zed..."
+	local backup_dir=""
 
 	if [ ! -d "${DIR}" ]; then
 		mkdir -p "${DIR}"
@@ -24,12 +25,19 @@ main() {
 		target="${PWD_PATH}${link}"
 		destination="${DIR}${link}"
 
-		# If linking a directory, remove existing and create a new link
-		if [ -d "$target" ]; then
-			rm -rf "$destination"
+		if [[ -L "$destination" && "$(readlink "$destination")" == "$target" ]]; then
+			continue
 		fi
 
-		ln -snf "$target" "$destination"
+		if [[ -e "$destination" || -L "$destination" ]]; then
+			if [[ -z "$backup_dir" ]]; then
+				backup_dir=$(mktemp -d "${DIR}backup.XXXXXX")
+			fi
+			mv "$destination" "${backup_dir}/${link}"
+			printf 'Backed up %s to %s\n' "$destination" "$backup_dir"
+		fi
+
+		ln -s "$target" "$destination"
 	done
 }
 
