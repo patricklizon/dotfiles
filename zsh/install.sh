@@ -29,7 +29,21 @@ main() {
 	check_and_create_file "${HOME}/.initializers"
 	add_initializers
 
-	ln -sf "${PWD}/zsh/.zshrc" "${HOME}/.zshrc"
+	local target="${PWD}/zsh/.zshrc"
+	local destination="${HOME}/.zshrc"
+
+	if [[ -L "$destination" && "$(readlink "$destination")" == "$target" ]]; then
+		return
+	fi
+
+	if [[ -e "$destination" || -L "$destination" ]]; then
+		local backup_dir
+		backup_dir=$(mktemp -d "${HOME}/.dotfiles-backup.XXXXXX")
+		mv "$destination" "${backup_dir}/.zshrc"
+		printf 'Backed up %s to %s\n' "$destination" "$backup_dir"
+	fi
+
+	ln -s "$target" "$destination"
 }
 
 main
