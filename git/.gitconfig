@@ -25,9 +25,6 @@
 	email = 12571855+patricklizon@users.noreply.github.com
 	useConfigOnly = true
 
-[safe]
-	directory = *
-
 [pull]
 	rebase = true
 
